@@ -1,6 +1,5 @@
 package gr.hua.it219151;
 
-import gr.hua.it219151.contracts.SimpleContract;
 import gr.hua.it219151.contracts.Contract;
 import gr.hua.it219151.enums.*;
 import gr.hua.it219151.profile.CreateProfile;
@@ -34,8 +33,8 @@ public class Main {
         allUsers.add(u3);
 
         //Initial Contracts
-        Contract c1 = new Contract("", ContractType.MOBILE, "", "", "", 0, "2021-1-14", ContractDuration.ONEYEAR, 15,true, PaymentType.CREDIT, NetworkSpeed.DATA,0,0);
-        Contract c2 = new Contract("", ContractType.MOBILE, "", "", "", 0, "2021-1-14", ContractDuration.ONEYEAR, 15,true, PaymentType.CREDIT, NetworkSpeed.DATA,0,0);
+        Contract c1 = new Contract("", ContractType.MOBILE, "", "", "", 0, "2021-1-14", ContractDuration.ONEYEAR, 15,true, PaymentMethod.CREDIT, NetworkSpeed.DATA,0,0);
+        Contract c2 = new Contract("", ContractType.MOBILE, "", "", "", 0, "2021-1-14", ContractDuration.ONEYEAR, 15,true, PaymentMethod.CREDIT, NetworkSpeed.DATA,0,0);
 
         allContracts.add(c1);
         allContracts.add(c2);

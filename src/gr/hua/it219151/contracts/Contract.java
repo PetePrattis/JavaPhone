@@ -3,7 +3,7 @@ package gr.hua.it219151.contracts;
 import gr.hua.it219151.enums.ContractDuration;
 import gr.hua.it219151.enums.ContractType;
 import gr.hua.it219151.enums.NetworkSpeed;
-import gr.hua.it219151.enums.PaymentType;
+import gr.hua.it219151.enums.PaymentMethod;
 
 //this is an extended contract with extra fields for mobile contract
 public class Contract extends SimpleContract {
@@ -17,12 +17,12 @@ public class Contract extends SimpleContract {
     private ContractDuration contractDuration;
     private int monthlyCost;
     private boolean isEContract;
-    private PaymentType paymentType;
+    private PaymentMethod paymentMethod;
     private NetworkSpeed networkSpeed;
     private int freeMonthlyGB;
     private int freeMonthlySMS;
 
-    public Contract(String contractID, ContractType type, String phoneNumber, String AFM, String password, int freeMinutes, String startDate, ContractDuration contractDuration, int monthlyCost, boolean isEContract, PaymentType paymentType, NetworkSpeed networkSpeed, int freeMonthlyGB, int freeMonthlySMS) {
+    public Contract(String contractID, ContractType type, String phoneNumber, String AFM, String password, int freeMinutes, String startDate, ContractDuration contractDuration, int monthlyCost, boolean isEContract, PaymentMethod paymentMethod, NetworkSpeed networkSpeed, int freeMonthlyGB, int freeMonthlySMS) {
         this.contractID = contractID;
         this.type = type;
         this.phoneNumber = phoneNumber;
@@ -33,7 +33,7 @@ public class Contract extends SimpleContract {
         this.contractDuration = contractDuration;
         this.monthlyCost = monthlyCost;
         this.isEContract = isEContract;
-        this.paymentType = paymentType;
+        this.paymentMethod = paymentMethod;
         this.networkSpeed = networkSpeed;
         this.freeMonthlyGB = freeMonthlyGB;
         this.freeMonthlySMS = freeMonthlySMS;
@@ -60,102 +60,82 @@ public class Contract extends SimpleContract {
         this.type = type;
     }
 
-    @Override
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    @Override
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    @Override
     public String getAFM() {
         return AFM;
     }
 
-    @Override
     public void setAFM(String AFM) {
         this.AFM = AFM;
     }
 
-    @Override
     public String getPassword() {
         return password;
     }
 
-    @Override
     public void setPassword(String password) {
         this.password = password;
     }
 
-    @Override
     public int getFreeMinutes() {
         return freeMinutes;
     }
 
-    @Override
     public void setFreeMinutes(int freeMinutes) {
         this.freeMinutes = freeMinutes;
     }
 
-    @Override
     public String getStartDate() {
         return startDate;
     }
 
-    @Override
     public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    @Override
     public ContractDuration getContractDuration() {
         return contractDuration;
     }
 
-    @Override
     public void setContractDuration(ContractDuration contractDuration) {
         this.contractDuration = contractDuration;
     }
 
-    @Override
     public int getMonthlyCost() {
         return monthlyCost;
     }
 
-    @Override
     public void setMonthlyCost(int monthlyCost) {
         this.monthlyCost = monthlyCost;
     }
 
-    @Override
     public boolean isEContract() {
         return isEContract;
     }
 
-    @Override
     public void setEContract(boolean EContract) {
         isEContract = EContract;
     }
 
-    @Override
-    public PaymentType getPaymentType() {
-        return paymentType;
+    public PaymentMethod getPaymentType() {
+        return paymentMethod;
     }
 
-    @Override
-    public void setPaymentType(PaymentType paymentType) {
-        this.paymentType = paymentType;
+    public void setPaymentType(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
-    @Override
     public NetworkSpeed getNetworkSpeed() {
         return networkSpeed;
     }
 
-    @Override
     public void setNetworkSpeed(NetworkSpeed networkSpeed) {
         this.networkSpeed = networkSpeed;
     }

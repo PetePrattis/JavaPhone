@@ -2,6 +2,7 @@ package gr.hua.it219151.profile;
 
 import gr.hua.it219151.Login;
 import gr.hua.it219151.actions.CreateContract;
+import gr.hua.it219151.actions.DeleteContract;
 import gr.hua.it219151.users.User;
 
 import java.util.Scanner;
@@ -34,7 +35,8 @@ public class UserProfile {
                 createContract.insertContract(loggedUser);
             }
             else if(userInput.equals("b")){
-
+                DeleteContract deleteContract = new DeleteContract();
+                deleteContract.removeContract(loggedUser);
             }
             else if(userInput.equals("c")){
                 //todo show statistics

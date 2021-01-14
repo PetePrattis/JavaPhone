@@ -54,7 +54,6 @@ public class CreateProfile {
             usertype = UserType.PROFESSIONAL;
         }
 
-
         System.out.println("Give email:");
         String email = scanner.nextLine();
 

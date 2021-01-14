@@ -1,6 +1,6 @@
 package gr.hua.it219151.enums;
 
-public enum PaymentType {
+public enum PaymentMethod {
     CREDIT,
     CASH,
     DEBIT

@@ -17,6 +17,9 @@ public class DeleteContract {
     public void removeContract(User loggedUser){
         System.out.println("Welcome to Remove Contract Page!");
 
+        Main m = new Main();
+        savedContracts = m.allContracts;
+
         List<Contract> userContracts = new ArrayList<>();
         for(Contract contract: savedContracts){
             if(contract.getAFM().equals(loggedUser.getAFM())){// todo check for non zero usage values
@@ -36,7 +39,7 @@ public class DeleteContract {
             System.out.println("Pick Contract to delete by inserting the corresponding number!");
             Scanner scanner = new Scanner(System.in); //reads user's input
             boolean valid;
-            int contractIndex = 0;
+            int contractIndex = 1;
             do {
                 try {
                     valid = false;
@@ -47,8 +50,10 @@ public class DeleteContract {
                     System.out.println("Please Input a number!");
                 }
             } while (valid == true);
-            Contract contractDelete = userContracts.get(contractIndex);
-            Main m = new Main();
+            contractIndex = contractIndex - 1;
+            Contract contractDelete = userContracts.get(contractIndex);//todo check if index of contract exists
+
+
             m.allContracts.remove(contractDelete);
             System.out.println("Contract deleted!");
         }

@@ -23,7 +23,7 @@ public class CreateContract {
         Scanner scanner = new Scanner(System.in); //reads user's input
         String userTypeInput = "";
 
-        //todo generate contract id
+        //todo generate contract id using local datetime
         String ID = "id_123456789";
 
         System.out.println("Pick Contract Type, 'a' for Landline and 'b' for Mobile:");
@@ -58,7 +58,7 @@ public class CreateContract {
 
         String password = loggedUser.getPassword();
 
-        int freeminutes = 0;
+        int freeminutes = 0; // todo user will pick
 
         System.out.println("Give Date for contract activation:");
         String startdate = scanner.nextLine(); //todo check to be later than today?
@@ -121,7 +121,7 @@ public class CreateContract {
             networkSpeed = NetworkSpeed.DATA;
         }
 
-        int freeMonthlyGB;
+        int freeMonthlyGB;//todo user will pick
         int freeMonthlySMS;
         if(contractType == ContractType.MOBILE){
             freeMonthlyGB = 1000;

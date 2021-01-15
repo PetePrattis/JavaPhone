@@ -1,8 +1,8 @@
 package gr.hua.it219151.profile;
 
-import gr.hua.it219151.Login;
 import gr.hua.it219151.actions.CreateContract;
 import gr.hua.it219151.actions.DeleteContract;
+import gr.hua.it219151.actions.GeneralContractInformation;
 import gr.hua.it219151.users.User;
 
 import java.util.Scanner;
@@ -39,7 +39,8 @@ public class UserProfile {
                 deleteContract.removeContract(loggedUser);
             }
             else if(userInput.equals("c")){
-                //todo show statistics
+                GeneralContractInformation generalContractInformation = new GeneralContractInformation();
+                generalContractInformation.showInformation(loggedUser);
             }
             else{
                 break;

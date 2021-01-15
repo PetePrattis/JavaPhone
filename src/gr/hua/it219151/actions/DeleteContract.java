@@ -53,6 +53,7 @@ public class DeleteContract {
             contractIndex = contractIndex - 1;
             Contract contractDelete = userContracts.get(contractIndex);//todo check if index of contract exists
 
+            //todo pick to deactivate or delete contract
 
             m.allContracts.remove(contractDelete);
             System.out.println("Contract deleted!");

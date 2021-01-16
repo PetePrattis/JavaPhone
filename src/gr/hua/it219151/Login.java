@@ -16,8 +16,7 @@ public class Login {
     public User loginUser(){
         System.out.println("Welcome to Login Page!");
 
-        Main m = new Main();
-        savedUsers = m.allUsers;
+        savedUsers = Main.allUsers;
 
         Scanner scanner = new Scanner(System.in); //reads user's input
 

@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class UserProfile {
 
     public void userActions(User loggedUser){
-        System.out.println("Welcome to User Profile Page " + loggedUser.getFirstName() + " " + loggedUser.getLastName() +"!" );
+        System.out.println("Welcome to User Profile Page " + loggedUser.getFirstName() + " " + loggedUser.getLastName() +"!");
 
         Scanner scanner = new Scanner(System.in); //reads user's input
 

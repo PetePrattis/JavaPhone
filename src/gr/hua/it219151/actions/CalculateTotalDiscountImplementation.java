@@ -17,7 +17,7 @@ public class CalculateTotalDiscountImplementation implements CalculateTotalDisco
             for(int i = 0; i <= contractCount; i++){
                 discount +=5;
             }
-            if(discount >= 15){
+            if(discount > 15){
                 discount = 15;
             }
         }
@@ -47,7 +47,7 @@ public class CalculateTotalDiscountImplementation implements CalculateTotalDisco
     }
 
     @Override
-    public int discountByPaymentmethod(List<Contract> userContracts) {
+    public int discountByPaymentMethod(List<Contract> userContracts) {
         int discount = 0;
         for(Contract c: userContracts){
             if(c.getPaymentType().equals(PaymentMethod.CREDIT) || c.getPaymentType().equals(PaymentMethod.DEBIT)){

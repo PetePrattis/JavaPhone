@@ -11,7 +11,7 @@ public interface CalculateTotalDiscount {
 
     int discountForLandline(List<Contract> userContracts);
 
-    int discountByPaymentmethod(List<Contract> userContracts);
+    int discountByPaymentMethod(List<Contract> userContracts);
 
     int discountForEContract(List<Contract> userContracts);
 

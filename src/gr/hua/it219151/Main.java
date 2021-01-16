@@ -26,9 +26,9 @@ public class Main {
         System.out.println("Welcome to JavaPhone Application!");
 
         //Initial Users
-        User u1 = new User("Stavroula","Pratti","1234567890","Address 1","ID 123456789", UserType.STUDENT, "stav@mail.com","pass1234567890",0);
-        User u2 = new User("Despoina","Pratti","1234567891","Address 2","ID 123456780", UserType.NORMAL, "desp@mail.com","pass1234567891",0);
-        User u3 = new User("Panagiotis","Prattis","1234567892","Address 3","ID 123456781", UserType.PROFESSIONAL, "pan@mail.com","pass1234567892",0);
+        User u1 = new User("Stavroula","Pratti","123456789","Address 1","ID 123456789", UserType.STUDENT, "stav@mail.com","pass1234567890",0);
+        User u2 = new User("Despoina","Pratti","123456780","Address 2","ID 123456780", UserType.NORMAL, "desp@mail.com","pass1234567891",0);
+        User u3 = new User("Panagiotis","Prattis","123456781","Address 3","ID 123456781", UserType.PROFESSIONAL, "pan@mail.com","pass1234567892",0);
 
         //Insert initial users
         allUsers.add(u1);
@@ -36,8 +36,8 @@ public class Main {
         allUsers.add(u3);
 
         //Initial Contracts
-        Contract c1 = new Contract("", ContractType.MOBILE, "", "1234567890", "", 0, "2021-1-14", ContractDuration.ONEYEAR, 15,true, PaymentMethod.CREDIT, NetworkSpeed.DATA,0,0);
-        Contract c2 = new Contract("", ContractType.MOBILE, "", "1234567890", "", 0, "2021-1-14", ContractDuration.ONEYEAR, 15,true, PaymentMethod.CREDIT, NetworkSpeed.DATA,0,0);
+        Contract c1 = new Contract("id_12345", ContractType.LANDLINE, "2101234567", "123456789", "pass123456789", 2000, "01-01-2021", ContractDuration.TWOYEARS, 5,true, PaymentMethod.CREDIT, NetworkSpeed.VDSL,0,0);
+        Contract c2 = new Contract("id_12344", ContractType.MOBILE, "6912345678", "123456789", "pass123456789", 1000, "01-01-2019", ContractDuration.ONEYEAR, 5,true, PaymentMethod.CREDIT, NetworkSpeed.DATA,1000,1000);
 
         allContracts.add(c1);
         allContracts.add(c2);
@@ -46,13 +46,11 @@ public class Main {
 
         String userInput = ""; //saves user's input
 
-
-
         //infinite loop that runs app
         while (true){
-            System.out.println("Pick an action, insert 'a' to create profile, " +
-                    "insert 'b' to login " +
-                    "or insert 'c' to logout ");
+            System.out.println("Pick an action 'a' to create profile, " +
+                    "'b' to login " +
+                    "or 'c' to logout!");
 
             userInput = scanner.nextLine(); //read user input
 

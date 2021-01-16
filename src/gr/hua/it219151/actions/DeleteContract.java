@@ -2,6 +2,7 @@ package gr.hua.it219151.actions;
 
 import gr.hua.it219151.Main;
 import gr.hua.it219151.contracts.Contract;
+import gr.hua.it219151.enums.UserType;
 import gr.hua.it219151.users.User;
 
 import java.util.ArrayList;
@@ -17,12 +18,11 @@ public class DeleteContract {
     public void removeContract(User loggedUser){
         System.out.println("Welcome to Remove Contract Page!");
 
-        Main m = new Main();
-        savedContracts = m.allContracts;
+        savedContracts = Main.allContracts;
 
         List<Contract> userContracts = new ArrayList<>();
         for(Contract contract: savedContracts){
-            if(contract.getAFM().equals(loggedUser.getAFM())){// todo check for non zero usage values
+            if(contract.getAFM().equals(loggedUser.getAFM())){
                 userContracts.add(contract);
             }
         }
@@ -49,14 +49,30 @@ public class DeleteContract {
                     valid = true;
                     System.out.println("Please Input a number!");
                 }
-            } while (valid == true);
+            } while (valid);
             contractIndex = contractIndex - 1;
-            Contract contractDelete = userContracts.get(contractIndex);//todo check if index of contract exists
+            if(contractIndex >= 0 && contractIndex <= userContracts.size()) {
+                Contract contractDelete = userContracts.get(contractIndex);
 
-            //todo pick to deactivate or delete contract
-
-            m.allContracts.remove(contractDelete);
-            System.out.println("Contract deleted!");
+                System.out.println("Pick 'a' to Delete Contract or 'b' to Deactivate Contract:");
+                String userInput = scanner.nextLine();
+                while (!userInput.equals("a") && !userInput.equals("b")){ // check for valid user input
+                    System.out.println("This is not a valid option, pick again!");
+                    userInput = scanner.nextLine();
+                }
+                UserType usertype;
+                if(userInput.equals("a")){
+                    Main.allContracts.remove(contractDelete);
+                    System.out.println("Contract deleted!");
+                }
+                else{
+                    contractDelete.setFreeMinutes(0);
+                    System.out.println("Contract deactivated!");
+                }
+            }
+            else{
+                System.out.println("No such Contract!");
+            }
         }
 
     }

@@ -2,9 +2,13 @@ package gr.hua.it219151.actions;
 
 import gr.hua.it219151.Main;
 import gr.hua.it219151.contracts.Contract;
+import gr.hua.it219151.enums.ContractDuration;
 import gr.hua.it219151.users.User;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,31 +32,42 @@ public class GeneralContractInformation {
                 userTypeInput = scanner.nextLine();
             }
             if(userTypeInput.equals("a")){
-                ShowActiveContracts showActiveContract = new ShowActiveContracts();
-                showActiveContract.printContracts(loggedUser);
-            }
-            else if(userTypeInput.equals("b")){//todo check if user has contracts
-                CalculateTotalDiscountImplementation calculateTotalDiscountImplementation = new CalculateTotalDiscountImplementation();
-                System.out.println("Total Discount "+loggedUser.getDiscount());
-                loggedUser.setDiscount(0);
                 List<Contract> userContracts = new ArrayList<>();
-                userContracts = getUserContarcts(loggedUser);
-                int totaldiscount = 0;
-                totaldiscount += calculateTotalDiscountImplementation.discountByUserType(loggedUser, userContracts);
-                totaldiscount += calculateTotalDiscountImplementation.discountForLandline(userContracts);
-                totaldiscount += calculateTotalDiscountImplementation.discountByPaymentmethod(userContracts);
-                totaldiscount += calculateTotalDiscountImplementation.discountForEContract(userContracts);
+                userContracts = getUserActiveContracts(loggedUser);
 
-                if(totaldiscount >= 45){
-                    loggedUser.setDiscount(45);
+                ShowActiveContracts showActiveContract = new ShowActiveContracts();
+                showActiveContract.printContracts(loggedUser, userContracts);
+            }
+            else if(userTypeInput.equals("b")){
+                List<Contract> userContracts = new ArrayList<>();
+                userContracts = getUserActiveContracts(loggedUser);
+                if(!userContracts.isEmpty()) {
+                    CalculateTotalDiscountImplementation calculateTotalDiscountImplementation = new CalculateTotalDiscountImplementation();
+                    System.out.println("Total Discount " + loggedUser.getDiscount());
+                    loggedUser.setDiscount(0);
+
+                    int totaldiscount = 0;
+                    totaldiscount += calculateTotalDiscountImplementation.discountByUserType(loggedUser, userContracts);
+                    totaldiscount += calculateTotalDiscountImplementation.discountForLandline(userContracts);
+                    totaldiscount += calculateTotalDiscountImplementation.discountByPaymentMethod(userContracts);
+                    totaldiscount += calculateTotalDiscountImplementation.discountForEContract(userContracts);
+
+                    if (totaldiscount >= 45) {
+                        loggedUser.setDiscount(45);
+                    } else {
+                        loggedUser.setDiscount(totaldiscount);
+                    }
+                    System.out.println("Total Discount " + totaldiscount);
                 }
                 else{
-                    loggedUser.setDiscount(totaldiscount);
+                    System.out.println("You don't have any contracts to get Discount!");
                 }
-                System.out.println("Total Discount "+totaldiscount);
             }
             else if(userTypeInput.equals("c")){
-                //todo show general statistics implementation
+                ShowUserStatisticsImplementation showUserStatisticsImplementation = new ShowUserStatisticsImplementation();
+                showUserStatisticsImplementation.showStatisticContractType();
+                showUserStatisticsImplementation.showStatisticFreeMinutesLandline();
+                showUserStatisticsImplementation.showStatisticFreeMinutesMobile();
             }
             else{
                 break;
@@ -62,17 +77,40 @@ public class GeneralContractInformation {
 
     }
 
-    private List<Contract> getUserContarcts(User loggedUser) {
-        Main m = new Main();
-        List<Contract> savedContracts = m.allContracts;
+    private List<Contract> getUserActiveContracts(User loggedUser) {
+        List<Contract> savedContracts = Main.allContracts;
 
         List<Contract> userContracts = new ArrayList<>();
         for(Contract contract: savedContracts){
-            if(contract.getAFM().equals(loggedUser.getAFM())){// todo check for non zero usage values
+            if(contract.getAFM().equals(loggedUser.getAFM()) && contract.getFreeMinutes() != 0 && hasNotExpired(contract.getStartDate(), contract.getContractDuration())){
                 userContracts.add(contract);
             }
         }
         return userContracts;
+    }
+
+    private Boolean hasNotExpired(String startDate, ContractDuration duration){
+        Date today = new Date();
+        Date date = new Date();
+        try {
+            date = new SimpleDateFormat("dd-MM-yyyy").parse((startDate));
+            long diff = today.getTime() - date.getTime();
+            diff = diff  / (1000 * 60 * 60 * 24); //in days
+            if(duration.equals(ContractDuration.ONEYEAR) && diff <= 365){
+                return true;
+            }
+            else if(duration.equals(ContractDuration.TWOYEARS) && diff <= 365*2){
+                return true;
+            }
+            else{
+                System.out.println("A contract has expired!");
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+            System.out.println("Unexpected error!");
+        }
+        return false;
     }
 
 }

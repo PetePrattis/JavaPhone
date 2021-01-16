@@ -17,8 +17,7 @@ public class CreateProfile {
     public User createUser(){ //function that gathers user's information and returns a new User object
         System.out.println("Welcome to Create User Page!");
 
-        Main m = new Main();
-        savedUsers = m.allUsers;
+        savedUsers = Main.allUsers;
 
         Scanner scanner = new Scanner(System.in); //reads user's input
 
@@ -28,8 +27,27 @@ public class CreateProfile {
         System.out.println("Give last name:");
         String lname = scanner.nextLine();
 
-        System.out.println("Give AFM:");
-        String afm = scanner.nextLine(); // todo must be 10 digit
+        String rexExAfm = "^[0-9]{9}$";
+        String afm = "";
+        while(true){
+            System.out.println("Give AFM:");
+            afm = scanner.nextLine();
+            boolean unique = true;
+            if(afm.matches(rexExAfm)){
+                for(User user: savedUsers){
+                    if(user.getAFM().equals(afm)){
+                        unique = false;
+                        System.out.println("This AFM already exists in our system!");
+                    }
+                }
+                if(unique){
+                    break;
+                }
+            }
+            else{
+                System.out.println("This is an invalid AFM, please give 9 digit number!");
+            }
+        }
 
         System.out.println("Give Address:");
         String address = scanner.nextLine();
@@ -54,17 +72,21 @@ public class CreateProfile {
             usertype = UserType.PROFESSIONAL;
         }
 
-        System.out.println("Give email:");
-        String email = scanner.nextLine();
-
-        //todo create password & insert initial discount
-        String password = afm;
-
-        for(User user: savedUsers){ //todo check for duplicate afm and id
-            if(user.getAFM().equals(afm)){
-                System.out.println("This afm already exists in our system");
+        String regExEmail = "^(.+)@(.+)$";
+        String email = "";
+        while(true){
+            System.out.println("Give email:");
+            email = scanner.nextLine();
+            if(email.matches(regExEmail)){
+                break;
+            }
+            else{
+                System.out.println("This is an invalid Email Address!");
             }
         }
+
+        String password = "pass" + afm;
+
 
         User newUser = new User(fname,lname,afm,address,id,usertype,email,password,0);
 

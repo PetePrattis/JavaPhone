@@ -14,16 +14,7 @@ public class ShowActiveContracts {
     //the list of all contracts
     public static List<Contract> savedContracts = new ArrayList<>();
 
-    public void printContracts(User loggedUser){
-        Main m = new Main();
-        savedContracts = m.allContracts;
-
-        List<Contract> userContracts = new ArrayList<>();
-        for(Contract contract: savedContracts){
-            if(contract.getAFM().equals(loggedUser.getAFM())){// todo check for non zero usage values
-                userContracts.add(contract);
-            }
-        }
+    public void printContracts(User loggedUser, List<Contract> userContracts){
 
         if(userContracts.isEmpty()){
             System.out.println("You don't have any contracts!");
@@ -32,12 +23,23 @@ public class ShowActiveContracts {
             int counter = 0;
             System.out.println("Your Active Contracts:");
             for(Contract contract: userContracts){
-                System.out.println(counter+". Id: " + contract.getContractID() + " Contract Type: " + contract.getType() + " Phone Number " + contract.getPhoneNumber());//todo show all info
+                System.out.println(counter+". Id: " + contract.getContractID() +
+                        " Contract Type: " + contract.getType() +
+                        " Phone Number: " + contract.getPhoneNumber() +
+                        " AFM: " + contract.getAFM() +
+                        " Password: " + contract.getPassword() +
+                        " Free Minutes: " + contract.getFreeMinutes() +
+                        " Start Date: " + contract.getStartDate() +
+                        " Contract Duration: " + contract.getContractDuration() +
+                        " Monthly Cost: " + contract.getMonthlyCost() +
+                        " Is E-Contract: " + contract.isEContract() +
+                        " Payment Method: " + contract.getPaymentType() +
+                        " Network Type: " + contract.getNetworkSpeed() +
+                        " Free Monthly Data: " + contract.getFreeMonthlyGB() +
+                        " Free Monthly SMS: " + contract.getFreeMonthlySMS()
+                );
                 counter++;
             }
-
         }
-
     }
-
 }

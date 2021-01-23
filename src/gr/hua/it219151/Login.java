@@ -1,7 +1,5 @@
 package gr.hua.it219151;
 
-import gr.hua.it219151.profile.CreateProfile;
-import gr.hua.it219151.profile.UserProfile;
 import gr.hua.it219151.users.User;
 
 import java.util.ArrayList;
@@ -16,22 +14,22 @@ public class Login {
     public User loginUser(){
         System.out.println("Welcome to Login Page!");
 
-        savedUsers = Main.allUsers;
+        savedUsers = Main.allUsers; // get the allUsers static List of the Main class
 
         Scanner scanner = new Scanner(System.in); //reads user's input
 
         String userInput = ""; //saves user's input
 
-        while(true){
+        while(true){ //infinite loop that runs Login page
             System.out.println("Give AFM:");
             String afm = scanner.nextLine();
 
             System.out.println("Give Password:");
             String password = scanner.nextLine();
 
-            for(User user: savedUsers){
-                if(user.getAFM().equals(afm) && user.getPassword().equals(password)){
-                    return user;
+            for(User user: savedUsers){ // check if AFM and Password combination exists in the system
+                if(user.getAFM().equals(afm) && user.getPassword().equals(password)){ // if credentials match
+                    return user; // return User and leave Login page
                 }
 
             }
@@ -43,14 +41,12 @@ public class Login {
                 userInput = scanner.nextLine();
             }
 
-            if(userInput.equals("b")){ //check which action was selected
-                break;
-
+            if(userInput.equals("b")){ //check if exit action was selected
+                break; //exit Loop
             }
         }
         System.out.println("Back to Main Page!");
-        return null;
-
+        return null; // return empty User
 
     }
 }

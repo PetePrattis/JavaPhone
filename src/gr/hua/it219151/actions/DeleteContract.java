@@ -15,7 +15,7 @@ public class DeleteContract {
     //the list of all contracts
     public static List<Contract> savedContracts = new ArrayList<>();
 
-    public void removeContract(User loggedUser){
+    public void removeContract(User loggedUser){ // function to delete or deactivate contract
         System.out.println("Welcome to Remove Contract Page!");
 
         savedContracts = Main.allContracts;

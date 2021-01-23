@@ -7,16 +7,15 @@ import gr.hua.it219151.enums.ContractType;
 import java.util.ArrayList;
 import java.util.List;
 
+// this class implements the interface ShowUserStatistics and we have to implement and override it's abstract methods
 public class ShowUserStatisticsImplementation implements ShowUserStatistics{
 
     //the list of all contracts
     public static List<Contract> savedContracts = new ArrayList<>();
 
     @Override
-    public void showStatisticContractType() {
-        Main m = new Main();
-        savedContracts = m.allContracts;
-
+    public void showStatisticContractType() { // custom functionality of showStatisticContractType
+        savedContracts = Main.allContracts;
 
         int landlinecount = 0;
         int mobilecount = 0;
@@ -38,9 +37,8 @@ public class ShowUserStatisticsImplementation implements ShowUserStatistics{
     }
 
     @Override
-    public void showStatisticFreeMinutesLandline() {
-        Main m = new Main();
-        savedContracts = m.allContracts;
+    public void showStatisticFreeMinutesLandline() { // custom functionality of showStatisticFreeMinutesLandline
+        savedContracts = Main.allContracts;
 
         int lfreeminutesmin = -1;
         int lfreeminutesmax = 0;
@@ -71,7 +69,7 @@ public class ShowUserStatisticsImplementation implements ShowUserStatistics{
     }
 
     @Override
-    public void showStatisticFreeMinutesMobile() {
+    public void showStatisticFreeMinutesMobile() { // custom functionality of showStatisticFreeMinutesMobile
         savedContracts = Main.allContracts;
 
         int mfreeminutesmin = -1;

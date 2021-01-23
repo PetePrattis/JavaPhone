@@ -14,10 +14,10 @@ public class CreateProfile {
     //the list of all users
     public static List<User> savedUsers = new ArrayList<>();
 
-    public User createUser(){ //function that gathers user's information and returns a new User object
+    public User createUser(){ // function that gathers user's information and returns a new User object
         System.out.println("Welcome to Create User Page!");
 
-        savedUsers = Main.allUsers;
+        savedUsers = Main.allUsers; // get the allUsers static List of the Main class
 
         Scanner scanner = new Scanner(System.in); //reads user's input
 
@@ -27,20 +27,20 @@ public class CreateProfile {
         System.out.println("Give last name:");
         String lname = scanner.nextLine();
 
-        String rexExAfm = "^[0-9]{9}$";
+        String rexExAfm = "^[0-9]{9}$"; // this is a Regular Expression for an AFM only numbers 9 digit String
         String afm = "";
-        while(true){
+        while(true){ // loop to check proper AFM input and to be unique in system
             System.out.println("Give AFM:");
             afm = scanner.nextLine();
             boolean unique = true;
-            if(afm.matches(rexExAfm)){
-                for(User user: savedUsers){
-                    if(user.getAFM().equals(afm)){
+            if(afm.matches(rexExAfm)){ // if AFM matches Regular expression
+                for(User user: savedUsers){ // for every User in system
+                    if(user.getAFM().equals(afm)){ // check for unique new AFM
                         unique = false;
                         System.out.println("This AFM already exists in our system!");
                     }
                 }
-                if(unique){
+                if(unique){ // if it is unique break loop and continue
                     break;
                 }
             }
@@ -72,12 +72,12 @@ public class CreateProfile {
             usertype = UserType.PROFESSIONAL;
         }
 
-        String regExEmail = "^(.+)@(.+)$";
+        String regExEmail = "^(.+)@(.+)$"; // Regular Expression for valid email
         String email = "";
         while(true){
             System.out.println("Give email:");
             email = scanner.nextLine();
-            if(email.matches(regExEmail)){
+            if(email.matches(regExEmail)){ // if Email matches Regular expression
                 break;
             }
             else{
@@ -86,10 +86,10 @@ public class CreateProfile {
         }
 
         String password = "pass" + afm;
-
+        System.out.println("Your password is: " + password);
 
         User newUser = new User(fname,lname,afm,address,id,usertype,email,password,0);
 
-        return newUser;
+        return newUser; // return the new User object
     }
 }

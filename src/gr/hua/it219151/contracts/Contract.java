@@ -22,6 +22,7 @@ public class Contract extends SimpleContract {
     private int freeMonthlyGB;
     private int freeMonthlySMS;
 
+    //this is the constructor for a Contract object
     public Contract(String contractID, ContractType type, String phoneNumber, String AFM, String password, int freeMinutes, String startDate, ContractDuration contractDuration, int monthlyCost, boolean isEContract, PaymentMethod paymentMethod, NetworkSpeed networkSpeed, int freeMonthlyGB, int freeMonthlySMS) {
         this.contractID = contractID;
         this.type = type;
@@ -39,7 +40,9 @@ public class Contract extends SimpleContract {
         this.freeMonthlySMS = freeMonthlySMS;
     }
 
+    //getters and setters for all fields
 
+    //overrides the setters and getters of the SimpleContract class that Contract class extends from
     @Override
     public String getContractID() {
         return contractID;

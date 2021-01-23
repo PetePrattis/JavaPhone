@@ -1,11 +1,8 @@
 package gr.hua.it219151.actions;
 
-import gr.hua.it219151.Login;
 import gr.hua.it219151.Main;
 import gr.hua.it219151.contracts.Contract;
 import gr.hua.it219151.enums.*;
-import gr.hua.it219151.profile.CreateProfile;
-import gr.hua.it219151.profile.UserProfile;
 import gr.hua.it219151.users.User;
 
 import java.text.ParseException;
@@ -21,10 +18,10 @@ public class CreateContract {
     //the list of all contracts
     public static List<Contract> savedContracts = new ArrayList<>();
 
-    public void insertContract(User loggedUser){
+    public void insertContract(User loggedUser){ // function that gathers contract's information and returns a new Contract object
         System.out.println("Welcome to Insert Contract Page!");
 
-        savedContracts = Main.allContracts;
+        savedContracts = Main.allContracts; // get the allUsers static List of the Main class
 
         Scanner scanner = new Scanner(System.in); //reads user's input
         String userTypeInput = "";
@@ -45,20 +42,20 @@ public class CreateContract {
             contractType = ContractType.MOBILE;
         }
 
-        String rexExPhone = "^[0-9]{10}$";
+        String rexExPhone = "^[0-9]{10}$"; // this is a Regular Expression for an Phone only numbers 10 digit String
         String phonenumber = "";
         while (true){ // check for valid phone number for given contract type
             System.out.println("Give phone Number:");
             phonenumber = scanner.nextLine();
             boolean unique = true;
-            if(phonenumber.matches(rexExPhone)) {
-                for(Contract c: savedContracts){
-                    if(c.getPhoneNumber().equals(phonenumber)){
+            if(phonenumber.matches(rexExPhone)) { // if Phone number matches Regular expression
+                for(Contract c: savedContracts){ // for every User in system
+                    if(c.getPhoneNumber().equals(phonenumber)){ // check for unique new Phone
                         unique = false;
                         System.out.println("This Phone number already exists in our system! Try Again!");
                     }
                 }
-                if (unique) {
+                if (unique) { // if it is unique we also must check if it is mobile or landline phone number
                     if (contractType == ContractType.LANDLINE && phonenumber.charAt(0) == '2') {
                         break;
                     } else if (contractType == ContractType.MOBILE && phonenumber.charAt(0) == '6') {
@@ -73,6 +70,7 @@ public class CreateContract {
 
         }
 
+        //get User's AFM and password through User getters
         String afm = loggedUser.getAFM();
 
         String password = loggedUser.getPassword();
@@ -102,6 +100,7 @@ public class CreateContract {
             freeminutes = 5000;
         }
 
+        //a european date format
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         String inputDate = "";
         Date startDate = new Date();
@@ -110,7 +109,7 @@ public class CreateContract {
             inputDate = scanner.nextLine();
 
             boolean valid = true;
-            try {
+            try { // we check for valid date format
                 formatter.parse(inputDate);
                 startDate = formatter.parse(inputDate);
             } catch (ParseException pe) {
@@ -118,8 +117,8 @@ public class CreateContract {
             }
 
             if(valid) {
-                Date now = new Date();
-                if (now.after(startDate)) {
+                Date now = new Date(); // we get the date time of now
+                if (now.after(startDate)) { // we check if given date is lated than now
                     System.out.println("You can't give a past Date for a new Contract! Try again!");
                 }
                 else{
@@ -252,7 +251,7 @@ public class CreateContract {
             freeMonthlySMS = 0;
         }
 
-
+        //new Contract Object
         Contract newContract = new Contract(ID, ContractType.MOBILE, phonenumber, afm, password, freeminutes, inputDate, contractDuration, monthlyCost, isEContract, paymentMethod, networkSpeed,freeMonthlyGB,freeMonthlySMS);
 
         Main.allContracts.add(newContract);

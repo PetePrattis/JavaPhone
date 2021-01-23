@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class GeneralContractInformation {
 
-    public void showInformation(User loggedUser){
+    public void showInformation(User loggedUser){ // function to show general statistics and active contracts
         System.out.println("Welcome to Contract Information Page!");
 
         Scanner scanner = new Scanner(System.in); //reads user's input
@@ -77,11 +77,12 @@ public class GeneralContractInformation {
 
     }
 
-    private List<Contract> getUserActiveContracts(User loggedUser) {
+    private List<Contract> getUserActiveContracts(User loggedUser) { // method to get active contracts
         List<Contract> savedContracts = Main.allContracts;
 
         List<Contract> userContracts = new ArrayList<>();
-        for(Contract contract: savedContracts){
+        for(Contract contract: savedContracts){ // for every contract
+            //contract must belong to logged User and must be active, this means non zero value for free minutes or that it has not expired
             if(contract.getAFM().equals(loggedUser.getAFM()) && contract.getFreeMinutes() != 0 && hasNotExpired(contract.getStartDate(), contract.getContractDuration())){
                 userContracts.add(contract);
             }
@@ -89,14 +90,15 @@ public class GeneralContractInformation {
         return userContracts;
     }
 
-    private Boolean hasNotExpired(String startDate, ContractDuration duration){
+    private Boolean hasNotExpired(String startDate, ContractDuration duration){ // method to check if contract has expired
         Date today = new Date();
         Date date = new Date();
         try {
+            //european date format
             date = new SimpleDateFormat("dd-MM-yyyy").parse((startDate));
-            long diff = today.getTime() - date.getTime();
-            diff = diff  / (1000 * 60 * 60 * 24); //in days
-            if(duration.equals(ContractDuration.ONEYEAR) && diff <= 365){
+            long diff = today.getTime() - date.getTime(); // the difference between contracts start date and now
+            diff = diff  / (1000 * 60 * 60 * 24); // the difference in days
+            if(duration.equals(ContractDuration.ONEYEAR) && diff <= 365){ // check if contract is within duration limits
                 return true;
             }
             else if(duration.equals(ContractDuration.TWOYEARS) && diff <= 365*2){

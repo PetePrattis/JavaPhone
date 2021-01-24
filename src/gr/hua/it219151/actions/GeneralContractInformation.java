@@ -2,7 +2,6 @@ package gr.hua.it219151.actions;
 
 import gr.hua.it219151.Main;
 import gr.hua.it219151.contracts.Contract;
-import gr.hua.it219151.enums.ContractDuration;
 import gr.hua.it219151.users.User;
 
 import java.text.ParseException;
@@ -90,7 +89,7 @@ public class GeneralContractInformation {
         return userContracts;
     }
 
-    private Boolean hasNotExpired(String startDate, ContractDuration duration){ // method to check if contract has expired
+    private Boolean hasNotExpired(String startDate, String duration){ // method to check if contract has expired
         Date today = new Date();
         Date date = new Date();
         try {
@@ -98,10 +97,10 @@ public class GeneralContractInformation {
             date = new SimpleDateFormat("dd-MM-yyyy").parse((startDate));
             long diff = today.getTime() - date.getTime(); // the difference between contracts start date and now
             diff = diff  / (1000 * 60 * 60 * 24); // the difference in days
-            if(duration.equals(ContractDuration.ONEYEAR) && diff <= 365){ // check if contract is within duration limits
+            if(duration.equals("ONEYEAR") && diff <= 365){ // check if contract is within duration limits
                 return true;
             }
-            else if(duration.equals(ContractDuration.TWOYEARS) && diff <= 365*2){
+            else if(duration.equals("TWOYEARS") && diff <= 365*2){
                 return true;
             }
             else{

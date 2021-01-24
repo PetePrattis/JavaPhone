@@ -1,9 +1,6 @@
 package gr.hua.it219151.actions;
 
 import gr.hua.it219151.contracts.Contract;
-import gr.hua.it219151.enums.ContractType;
-import gr.hua.it219151.enums.PaymentMethod;
-import gr.hua.it219151.enums.UserType;
 import gr.hua.it219151.users.User;
 
 import java.util.List;
@@ -15,7 +12,7 @@ public class CalculateTotalDiscountImplementation implements CalculateTotalDisco
     public int discountByUserType(User loggedUser, List<Contract> userContracts) { // custom functionality of discountByUserType
         int contractCount = userContracts.size();
         int discount = 0;
-        if(loggedUser.getUserType().equals(UserType.NORMAL)){
+        if(loggedUser.getUserType().equals("NORMAL")){
             for(int i = 0; i <= contractCount; i++){
                 discount +=5;
             }
@@ -23,7 +20,7 @@ public class CalculateTotalDiscountImplementation implements CalculateTotalDisco
                 discount = 15;
             }
         }
-        else if(loggedUser.getUserType().equals(UserType.PROFESSIONAL)){
+        else if(loggedUser.getUserType().equals("PROFESSIONAL")){
             for(int i = 0; i <= contractCount; i++){
                 discount +=10;
             }
@@ -40,7 +37,7 @@ public class CalculateTotalDiscountImplementation implements CalculateTotalDisco
     public int discountForLandline(List<Contract> userContracts) { // custom functionality of discountForLandline
         int discount = 0;
         for(Contract c: userContracts){
-            if(c.getType().equals(ContractType.LANDLINE) && c.getFreeMinutes() >= 1000){
+            if(c.getType().equals("LANDLINE") && c.getFreeMinutes() >= 1000){
                 discount += 11;
             }
         }
@@ -51,7 +48,7 @@ public class CalculateTotalDiscountImplementation implements CalculateTotalDisco
     public int discountByPaymentMethod(List<Contract> userContracts) { // custom functionality of discountByPaymentMethod
         int discount = 0;
         for(Contract c: userContracts){
-            if(c.getPaymentType().equals(PaymentMethod.CREDIT) || c.getPaymentType().equals(PaymentMethod.DEBIT)){
+            if(c.getPaymentType().equals("CREDIT") || c.getPaymentType().equals("DEBIT")){
                 discount += 5;
             }
         }

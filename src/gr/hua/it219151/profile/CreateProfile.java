@@ -2,7 +2,6 @@ package gr.hua.it219151.profile;
 
 
 import gr.hua.it219151.Main;
-import gr.hua.it219151.enums.UserType;
 import gr.hua.it219151.users.User;
 
 import java.util.ArrayList;
@@ -61,15 +60,15 @@ public class CreateProfile {
             System.out.println("This is not a valid option, pick again!");
             userTypeInput = scanner.nextLine();
         }
-        UserType usertype;
+        String usertype;
         if(userTypeInput.equals("a")){
-            usertype = UserType.NORMAL;
+            usertype = "NORMAL";
         }
         else if(userTypeInput.equals("b")){
-            usertype = UserType.STUDENT;
+            usertype = "STUDENT";
         }
         else{
-            usertype = UserType.PROFESSIONAL;
+            usertype = "PROFESSIONAL";
         }
 
         String regExEmail = "^(.+)@(.+)$"; // Regular Expression for valid email

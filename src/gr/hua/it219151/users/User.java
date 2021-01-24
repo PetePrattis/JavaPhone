@@ -1,20 +1,18 @@
 package gr.hua.it219151.users;
 
-import gr.hua.it219151.enums.UserType;
-
 public class User extends Person{
     private String firstName;
     private String lastName;
     private String AFM;
     private String Address;
     private String ID;
-    private UserType userType;
+    private String userType;
     private String email;
     private String password;
     private int discount;
 
     // this is a constructor for a User object
-    public User(String firstName, String lastName, String AFM, String address, String ID, UserType userType, String email, String password, int discount) {
+    public User(String firstName, String lastName, String AFM, String address, String ID, String userType, String email, String password, int discount) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.AFM = AFM;
@@ -73,11 +71,11 @@ public class User extends Person{
         this.ID = ID;
     }
 
-    public UserType getUserType() {
+    public String getUserType() {
         return userType;
     }
 
-    public void setUserType(UserType userType) {
+    public void setUserType(String userType) {
         this.userType = userType;
     }
 

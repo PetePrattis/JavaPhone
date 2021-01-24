@@ -2,7 +2,6 @@ package gr.hua.it219151.actions;
 
 import gr.hua.it219151.Main;
 import gr.hua.it219151.contracts.Contract;
-import gr.hua.it219151.enums.ContractType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +20,7 @@ public class ShowUserStatisticsImplementation implements ShowUserStatistics{
         int mobilecount = 0;
 
         for(Contract c: savedContracts){
-            if(c.getType().equals(ContractType.LANDLINE)){
+            if(c.getType().equals("LANDLINE")){
                 landlinecount ++;
             }
             else{
@@ -46,8 +45,9 @@ public class ShowUserStatisticsImplementation implements ShowUserStatistics{
         int lfreeminutessum = 0;
         int lfreeminutescount = 0;
 
+
         for(Contract c: savedContracts){
-            if(c.getType().equals(ContractType.LANDLINE)){//todo extra checks for active contracts
+            if(c.getType().equals("LANDLINE")){
                 if(c.getFreeMinutes() > lfreeminutesmax){
                     lfreeminutesmax = c.getFreeMinutes();
                 }
@@ -79,7 +79,7 @@ public class ShowUserStatisticsImplementation implements ShowUserStatistics{
         int mfreeminutescount = 0;
 
         for(Contract c: savedContracts) {
-            if (c.getType().equals(ContractType.MOBILE)) {//todo extra checks for active contracts
+            if (c.getType().equals("MOBILE")) {
                 if (c.getFreeMinutes() > mfreeminutesmax) {
                     mfreeminutesmax = c.getFreeMinutes();
                 }

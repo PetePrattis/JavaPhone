@@ -2,7 +2,6 @@ package gr.hua.it219151.actions;
 
 import gr.hua.it219151.Main;
 import gr.hua.it219151.contracts.Contract;
-import gr.hua.it219151.enums.*;
 import gr.hua.it219151.users.User;
 
 import java.text.ParseException;
@@ -34,12 +33,12 @@ public class CreateContract {
             System.out.println("This is not a valid option, pick again!");
             userTypeInput = scanner.nextLine();
         }
-        ContractType contractType;
+        String contractType;
         if(userTypeInput.equals("a")){
-            contractType = ContractType.LANDLINE;
+            contractType = "LANDLINE";
         }
         else {
-            contractType = ContractType.MOBILE;
+            contractType = "MOBILE";
         }
 
         String rexExPhone = "^[0-9]{10}$"; // this is a Regular Expression for an Phone only numbers 10 digit String
@@ -56,9 +55,9 @@ public class CreateContract {
                     }
                 }
                 if (unique) { // if it is unique we also must check if it is mobile or landline phone number
-                    if (contractType == ContractType.LANDLINE && phonenumber.charAt(0) == '2') {
+                    if (contractType == "LANDLINE" && phonenumber.charAt(0) == '2') {
                         break;
-                    } else if (contractType == ContractType.MOBILE && phonenumber.charAt(0) == '6') {
+                    } else if (contractType == "MOBILE" && phonenumber.charAt(0) == '6') {
                         break;
                     }
                     System.out.println("Phone number type doesn't match contract Type! Give again:");
@@ -133,21 +132,21 @@ public class CreateContract {
             System.out.println("This is not a valid option, pick again!");
             userTypeInput = scanner.nextLine();
         }
-        ContractDuration contractDuration;
+        String contractDuration;
         if(userTypeInput.equals("a")){
-            contractDuration = ContractDuration.ONEYEAR;
+            contractDuration = "ONEYEAR";
         }
         else {
-            contractDuration = ContractDuration.TWOYEARS;
+            contractDuration = "TWOYEARS";
         }
 
         System.out.println("We will now Calculate contract's Monthly Cost according to Contract Type and User Type.");
         int monthlyCost = 0;
-        if(contractType.equals(ContractType.LANDLINE)){
-            if(loggedUser.getUserType().equals(UserType.NORMAL)){
+        if(contractType.equals("LANDLINE")){
+            if(loggedUser.getUserType().equals("NORMAL")){
                 monthlyCost = 15;
             }
-            else if(loggedUser.getUserType().equals(UserType.STUDENT)){
+            else if(loggedUser.getUserType().equals("STUDENT")){
                 monthlyCost = 5;
             }
             else{
@@ -155,10 +154,10 @@ public class CreateContract {
             }
         }
         else{
-            if(loggedUser.getUserType().equals(UserType.NORMAL)){
+            if(loggedUser.getUserType().equals("NORMAL")){
                 monthlyCost = 12;
             }
-            else if(loggedUser.getUserType().equals(UserType.STUDENT)){
+            else if(loggedUser.getUserType().equals("STUDENT")){
                 monthlyCost = 5;
             }
             else{
@@ -184,19 +183,19 @@ public class CreateContract {
             System.out.println("This is not a valid option, pick again!");
             userTypeInput = scanner.nextLine();
         }
-        PaymentMethod paymentMethod;
+        String paymentMethod;
         if(userTypeInput.equals("a")){
-            paymentMethod = PaymentMethod.CREDIT;
+            paymentMethod = "CREDIT";
         }
         else if(userTypeInput.equals("b")){
-            paymentMethod = PaymentMethod.CASH;
+            paymentMethod = "CASH";
         }
         else {
-            paymentMethod = PaymentMethod.DEBIT;
+            paymentMethod = "DEBIT";
         }
 
-        NetworkSpeed networkSpeed;
-        if(contractType == ContractType.LANDLINE){
+        String networkSpeed;
+        if(contractType == "LANDLINE"){
             System.out.println("Pick Network Speed, 'a' for ADSL, 'b' for VDSL or if you don't want internet pick 'c':");
             userTypeInput = scanner.nextLine();
             while (!userTypeInput.equals("a") && !userTypeInput.equals("b") && !userTypeInput.equals("c")){ // check for valid user input
@@ -205,22 +204,22 @@ public class CreateContract {
             }
 
             if(userTypeInput.equals("a")){
-                networkSpeed = NetworkSpeed.ADSL;
+                networkSpeed = "ADSL";
             }
             else if(userTypeInput.equals("b")){
-                networkSpeed = NetworkSpeed.VDSL;
+                networkSpeed = "VDSL";
             }
             else {
-                networkSpeed = NetworkSpeed.NOINTERNET;
+                networkSpeed = "NOINTERNET";
             }
         }
         else{
-            networkSpeed = NetworkSpeed.DATA;
+            networkSpeed = "DATA";
         }
 
         int freeMonthlyGB;
         int freeMonthlySMS;
-        if(contractType == ContractType.MOBILE){
+        if(contractType == "MOBILE"){
             System.out.println("You can choose between three free monthly GB & SMS combo packages, " +
                     "Pick 'a' for 1GB Data & 1000 SMS " +
                     "'b' for 2GB Data & 500 SMS " +
@@ -252,7 +251,7 @@ public class CreateContract {
         }
 
         //new Contract Object
-        Contract newContract = new Contract(ID, ContractType.MOBILE, phonenumber, afm, password, freeminutes, inputDate, contractDuration, monthlyCost, isEContract, paymentMethod, networkSpeed,freeMonthlyGB,freeMonthlySMS);
+        Contract newContract = new Contract(ID, contractType, phonenumber, afm, password, freeminutes, inputDate, contractDuration, monthlyCost, isEContract, paymentMethod, networkSpeed,freeMonthlyGB,freeMonthlySMS);
 
         Main.allContracts.add(newContract);
 

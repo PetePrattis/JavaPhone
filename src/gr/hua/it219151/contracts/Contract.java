@@ -1,29 +1,25 @@
 package gr.hua.it219151.contracts;
 
-import gr.hua.it219151.enums.ContractDuration;
-import gr.hua.it219151.enums.ContractType;
-import gr.hua.it219151.enums.NetworkSpeed;
-import gr.hua.it219151.enums.PaymentMethod;
 
 //this is an extended contract with extra fields for mobile contract
 public class Contract extends SimpleContract {
     private String contractID;
-    private ContractType type;
+    private String type;
     private String phoneNumber;
     private String AFM;
     private String password;
     private int freeMinutes;
     private String startDate;
-    private ContractDuration contractDuration;
+    private String contractDuration;
     private int monthlyCost;
     private boolean isEContract;
-    private PaymentMethod paymentMethod;
-    private NetworkSpeed networkSpeed;
+    private String paymentMethod;
+    private String networkSpeed;
     private int freeMonthlyGB;
     private int freeMonthlySMS;
 
     //this is the constructor for a Contract object
-    public Contract(String contractID, ContractType type, String phoneNumber, String AFM, String password, int freeMinutes, String startDate, ContractDuration contractDuration, int monthlyCost, boolean isEContract, PaymentMethod paymentMethod, NetworkSpeed networkSpeed, int freeMonthlyGB, int freeMonthlySMS) {
+    public Contract(String contractID, String type, String phoneNumber, String AFM, String password, int freeMinutes, String startDate, String contractDuration, int monthlyCost, boolean isEContract, String paymentMethod, String networkSpeed, int freeMonthlyGB, int freeMonthlySMS) {
         this.contractID = contractID;
         this.type = type;
         this.phoneNumber = phoneNumber;
@@ -54,12 +50,12 @@ public class Contract extends SimpleContract {
     }
 
     @Override
-    public ContractType getType() {
+    public String getType() {
         return type;
     }
 
     @Override
-    public void setType(ContractType type) {
+    public void setType(String type) {
         this.type = type;
     }
 
@@ -103,11 +99,11 @@ public class Contract extends SimpleContract {
         this.startDate = startDate;
     }
 
-    public ContractDuration getContractDuration() {
+    public String getContractDuration() {
         return contractDuration;
     }
 
-    public void setContractDuration(ContractDuration contractDuration) {
+    public void setContractDuration(String contractDuration) {
         this.contractDuration = contractDuration;
     }
 
@@ -127,19 +123,19 @@ public class Contract extends SimpleContract {
         isEContract = EContract;
     }
 
-    public PaymentMethod getPaymentType() {
+    public String getPaymentType() {
         return paymentMethod;
     }
 
-    public void setPaymentType(PaymentMethod paymentMethod) {
+    public void setPaymentType(String paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 
-    public NetworkSpeed getNetworkSpeed() {
+    public String getNetworkSpeed() {
         return networkSpeed;
     }
 
-    public void setNetworkSpeed(NetworkSpeed networkSpeed) {
+    public void setNetworkSpeed(String networkSpeed) {
         this.networkSpeed = networkSpeed;
     }
 

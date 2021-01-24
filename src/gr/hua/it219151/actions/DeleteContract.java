@@ -2,7 +2,6 @@ package gr.hua.it219151.actions;
 
 import gr.hua.it219151.Main;
 import gr.hua.it219151.contracts.Contract;
-import gr.hua.it219151.enums.UserType;
 import gr.hua.it219151.users.User;
 
 import java.util.ArrayList;
@@ -60,7 +59,7 @@ public class DeleteContract {
                     System.out.println("This is not a valid option, pick again!");
                     userInput = scanner.nextLine();
                 }
-                UserType usertype;
+
                 if(userInput.equals("a")){
                     Main.allContracts.remove(contractDelete);
                     System.out.println("Contract deleted!");

@@ -1,11 +1,10 @@
 package gr.hua.it219151.contracts;
 
-import gr.hua.it219151.enums.ContractType;
 
 //this is a simple contract
 public class SimpleContract {
     private String contractID;
-    private ContractType type;
+    private String type;
 
 
     public String getContractID() {
@@ -16,11 +15,11 @@ public class SimpleContract {
         this.contractID = contractID;
     }
 
-    public ContractType getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(ContractType type) {
+    public void setType(String type) {
         this.type = type;
     }
 

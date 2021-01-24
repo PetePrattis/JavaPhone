@@ -26,13 +26,13 @@ public class CreateProfile {
         System.out.println("Give last name:");
         String lname = scanner.nextLine();
 
-        String rexExAfm = "^[0-9]{9}$"; // this is a Regular Expression for an AFM only numbers 9 digit String
+        String regExAfm = "^[0-9]{9}$"; // this is a Regular Expression for an AFM only numbers 9 digit String
         String afm = "";
         while(true){ // loop to check proper AFM input and to be unique in system
             System.out.println("Give AFM:");
             afm = scanner.nextLine();
             boolean unique = true;
-            if(afm.matches(rexExAfm)){ // if AFM matches Regular expression
+            if(afm.matches(regExAfm)){ // if AFM matches Regular expression
                 for(User user: savedUsers){ // for every User in system
                     if(user.getAFM().equals(afm)){ // check for unique new AFM
                         unique = false;

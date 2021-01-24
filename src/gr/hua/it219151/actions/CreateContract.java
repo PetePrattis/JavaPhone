@@ -41,13 +41,13 @@ public class CreateContract {
             contractType = "MOBILE";
         }
 
-        String rexExPhone = "^[0-9]{10}$"; // this is a Regular Expression for an Phone only numbers 10 digit String
+        String regExPhone = "^[0-9]{10}$"; // this is a Regular Expression for an Phone only numbers 10 digit String
         String phonenumber = "";
         while (true){ // check for valid phone number for given contract type
             System.out.println("Give phone Number:");
             phonenumber = scanner.nextLine();
             boolean unique = true;
-            if(phonenumber.matches(rexExPhone)) { // if Phone number matches Regular expression
+            if(phonenumber.matches(regExPhone)) { // if Phone number matches Regular expression
                 for(Contract c: savedContracts){ // for every User in system
                     if(c.getPhoneNumber().equals(phonenumber)){ // check for unique new Phone
                         unique = false;
